@@ -4,10 +4,10 @@ const port = 3000;
 
 // Defining an endpoint that takes two query parameters
 app.get("/api", (req, res) => {
-  const { param1, param2 } = req.query;
+  const { slack_name, track } = req.query;
 
   // First checking if both parameters are provided
-  if (!param1 || !param2) {
+  if (!slack_name || !track) {
     return res.status(400).json({ error: 'Both parameters are required' });
   }
 
@@ -16,7 +16,7 @@ app.get("/api", (req, res) => {
   const currentDayOfWeek = new Date().toLocaleDateString('en-US', { weekday: 'long' });
 
   // Calculating the time difference between the provided param2 and the current UTC time
-  const providedTime = new Date(param2);
+  const providedTime = new Date(track);
   const timeDifferenceInSeconds = Math.abs(providedTime - new Date()) / 1000;
 
   // Validating if the time difference is within +/- 2 minutes
@@ -25,10 +25,10 @@ app.get("/api", (req, res) => {
   }
 
   const responseData = {
-    "slack_name": param1,
+    "slack_name": slack_name,
     "current_day": currentDayOfWeek,
     "utc_time": currentUTC,
-    "track": "backend",
+    "track": track,
     "github_file-url": "https://github.com/ferdinard7/task1/blob/main/server.js",
     "github_repo_url": "https://github.com/ferdinard7/task1/tree/main",
     "status_code": 200
