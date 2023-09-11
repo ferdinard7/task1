@@ -29,8 +29,8 @@ app.get("/api/data", (req, res) => {
     "current_day": currentDayOfWeek,
     "utc_time": currentUTC,
     "track": "backend",
-    "github_file-url": "omo",
-    "github_repo_url": "",
+    "github_file-url": "https://github.com/ferdinard7/task1/blob/main/server.js",
+    "github_repo_url": "https://github.com/ferdinard7/task1/tree/main",
     "status_code": 200
   };
 
