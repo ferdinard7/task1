@@ -12,7 +12,7 @@ app.get("/api", (req, res) => {
   }
 
   // Getting the current UTC time and day of the week
-  const currentUTC = new Date().toUTCString();
+  const currentUTC = new Date().toISOString();
   const currentDayOfWeek = new Date().toLocaleDateString('en-US', { weekday: 'long' });
 
   // Calculating the time difference between the provided param2 and the current UTC time
