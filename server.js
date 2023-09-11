@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 
 // Defining an endpoint that takes two query parameters
-app.get("/api/data", (req, res) => {
+app.get("/api", (req, res) => {
   const { param1, param2 } = req.query;
 
   // First checking if both parameters are provided
