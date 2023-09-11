@@ -35,7 +35,7 @@ app.get("/api", (req, res) => {
     "current_day": currentDayOfWeek,
     "utc_time": currentUTC,
     "track": track,
-    "github_file-url": "https://github.com/ferdinard7/task1/blob/main/server.js",
+    "github_file_url": "https://github.com/ferdinard7/task1/blob/main/server.js",
     "github_repo_url": "https://github.com/ferdinard7/task1/tree/main",
     "status_code": 200
   };
