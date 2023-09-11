@@ -2,6 +2,11 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+// Function to format a number with leading zero if it's less than 10
+function formatWithLeadingZero(num) {
+  return num < 10 ? `0${num}` : num;
+}
+
 // Defining an endpoint that takes two query parameters
 app.get("/api", (req, res) => {
   const { slack_name, track } = req.query;
@@ -12,12 +17,13 @@ app.get("/api", (req, res) => {
   }
 
   // Getting the current UTC time and day of the week
-  const currentUTC = new Date().toISOString();
+  const currentDate = new Date();
+  const currentUTC = `${currentDate.getUTCFullYear()}-${formatWithLeadingZero(currentDate.getUTCMonth() + 1)}-${formatWithLeadingZero(currentDate.getUTCDate())}T${formatWithLeadingZero(currentDate.getUTCHours())}:${formatWithLeadingZero(currentDate.getUTCMinutes())}:${formatWithLeadingZero(currentDate.getUTCSeconds())}Z`;
   const currentDayOfWeek = new Date().toLocaleDateString('en-US', { weekday: 'long' });
 
-  // Calculating the time difference between the provided param2 and the current UTC time
+  // Calculating the time difference between the provided track parameter and the current UTC time
   const providedTime = new Date(track);
-  const timeDifferenceInSeconds = Math.abs(providedTime - new Date()) / 1000;
+  const timeDifferenceInSeconds = Math.abs(providedTime - currentDate) / 1000;
 
   // Validating if the time difference is within +/- 2 minutes
   if (timeDifferenceInSeconds > 120) {
